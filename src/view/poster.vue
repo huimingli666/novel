@@ -220,7 +220,7 @@
     }
 
     .poster-middle-vip {
-      margin-top: 10px;
+      /*margin-top: 10px;*/
       img {
         width: 100%;
         height: 100%;

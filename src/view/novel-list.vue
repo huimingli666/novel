@@ -282,11 +282,12 @@
     .loadding {
       font-size: 13px;
       text-align: center;
-      height: 56px;
+      height: 25px;
       /*line-height: 60px;*/
       color: #4A9BFF;
       /*background-color: rgba(255, 255, 255, 1);*/
       margin-bottom: 15px;
+      margin-top: 15px;
     }
     .loadding:focus {
       outline: none;
