@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <h1 class="animated flipInX">微信扫码关注公众号</h1>
     <div class="poster-middle-vip">
       <img src="../../static/img/qrcode.jpg">
@@ -9,9 +9,21 @@
 <script>
   export default {
     name: 'notfound',
+    data() {
+      return {
+        invite_id: '',
+      };
+    },
     methods: {
       goBack() {
         this.$router.go(-1)
+      }
+    },
+    mounted() {
+      document.title = '哇呜阅读';
+      this.invite_id = this.$route.query.invite_id;
+      if (this.invite_id != '') {
+        localStorage.setItem('invite_id', this.invite_id)
       }
     }
   }
@@ -37,6 +49,7 @@
       }
     }
   }
+
   .poster-middle-vip {
     margin-top: 10px;
     img {

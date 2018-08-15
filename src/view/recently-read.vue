@@ -108,12 +108,12 @@
       display: flex;
       flex-direction: row;
       text-align: left;
-      height: 160px;
+      height: 140px;
       margin: 15pt 7pt 0 7pt;
       .read-item-left {
         width: 35%;
         img {
-          width: 100%;
+          width: 97%;
           height: 100%;
           border-radius: 5px;
           /*box-shadow: 5px 5px 5px #d4d4d4;*/

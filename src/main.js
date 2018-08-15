@@ -150,7 +150,11 @@ router.beforeEach((to, from, next) => {
           let tem = arr[1].split('=')
           if (tem[0] == 'code') {
             console.log(tem[1])
-            axios.get(`http://wow.drmfslx.top/wx/get_user_info?code=${tem[1]}`).then(res => {
+            let invite_id = ''
+            if (!localStorage.getItem('invite_id')) {
+              invite_id = localStorage.getItem('invite_id')
+            }
+            axios.get(`http://wow.drmfslx.top/wx/get_user_info?code=${tem[1]}&invite_id=${invite_id}`).then(res => {
               console.log(res)
               localStorage.setItem('userinfo', res.data.data.userinfo)
               localStorage.setItem('openid', res.data.data.userinfo.openid)
