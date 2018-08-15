@@ -177,6 +177,8 @@ router.beforeEach((to, from, next) => {
       } else {
         // 已经登录
         console.log('已登录')
+
+
         next()
       }
     } else {

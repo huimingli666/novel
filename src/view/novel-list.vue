@@ -37,7 +37,8 @@
                      :bottom-all-loaded="allLoaded" :bottomPullText='bottomText'
                      ref="loadmore" :autoFill="false">-->
         <div class="chapter-item" v-for="(item,index) in list2" @click="geToDetail(id,item.section_num)">
-          <div class="chapter-item-left">第{{index + 1}}章 {{item.title_name}}</div>
+          <!--<div class="chapter-item-left">第{{index + 1}}章 {{item.title_name}}</div>-->
+          <div class="chapter-item-left">{{item.title_name}}</div>
           <div class="chapter-item-right">
             <div v-if="item.is_unlock=='-1'" style="color: #9eee77">免费</div>
             <div v-if="item.is_unlock=='1'" style="color: #9eee77">已解锁</div>

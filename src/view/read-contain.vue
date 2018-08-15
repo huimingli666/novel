@@ -452,7 +452,8 @@
         text-align: left;
         text-indent: 2em;
         font-size: 19px;
-        line-height: 1.5;
+        line-height: 1.7;
+        letter-spacing: 2px
       }
     }
     .mtpouup-main {
