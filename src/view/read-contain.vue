@@ -217,7 +217,7 @@
       unlock(){
         let params = {
           works_id: this.id,
-          section_num: this.section_num
+          section_num: parseInt(this.section_num)
         };
         let self = this;
         this.$axios({
@@ -225,7 +225,7 @@
           method: "GET",
         }).then(res => {
           const {code, data} = res.data;
-          this.section_num = this.section_num - 1;
+          this.section_num = parseInt(this.section_num) - 1;
           if (code == '0') {
             this.checkAuto(this.value);
             this.popupVisible = false;
@@ -250,7 +250,7 @@
         })
       },
       goToNext(){
-        this.section_num = this.section_num + 1;
+        this.section_num = parseInt(this.section_num) + 1;
         console.log(this.section_num)
         this.getList();
       },
@@ -276,14 +276,14 @@
         if (this.section_num <= 1) {
           return;
         }
-        this.section_num = this.section_num - 1;
+        this.section_num = parseInt(this.section_num) - 1;
         this.getList(this.section_num);
       },
 //      获取用户预期收益
       getList(){
         let params = {
           works_id: this.id,
-          section_num: this.section_num
+          section_num: parseInt(this.section_num)
         };
         let self = this;
         this.$axios({
@@ -294,7 +294,7 @@
           const {code, data} = res.data;
           if (code == '0') {
             self.list = [];
-            this.section_num = data.section_num;
+            this.section_num = parseInt(data.section_num);
             document.body.scrollTop = document.documentElement.scrollTop = 0;
             if (self.type == '0') {
               self.list = data.works_detail;
@@ -327,7 +327,7 @@
         let self = this;
         let params = {
           works_id: this.id,
-          section_num: this.section_num
+          section_num: parseInt(this.section_num)
         };
         this.$axios({
           url: `/pay/get_pay_info?works_id=${params.works_id}&section_num=${params.section_num}`,
