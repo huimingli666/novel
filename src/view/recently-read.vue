@@ -101,7 +101,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .recently-read {
     width: 100%;
     .read-item {
@@ -113,7 +113,7 @@
       .read-item-left {
         width: 35%;
         img {
-          width: 97%;
+          width: 90%;
           height: 100%;
           border-radius: 5px;
           /*box-shadow: 5px 5px 5px #d4d4d4;*/

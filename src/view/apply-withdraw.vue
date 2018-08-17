@@ -107,7 +107,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .apply-withdraw {
     width: 100%;
     /*margin-left: 10%;*/

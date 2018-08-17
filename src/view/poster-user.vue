@@ -291,7 +291,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   body {
     background-color: #f2f2f2 !important;
   }

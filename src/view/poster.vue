@@ -25,7 +25,9 @@
         <div style="text-align: center">
           <span class="text-title">赚</span>
         </div>
-        <div class="text-msg">获得专属二维码，好友通过扫码进入哇呜阅读，即成为您的书友，书友所有<span style="color: #feb37c">充值的50%</span>奖励给您，书友的书友所有<span style="color: #feb37c">充值的25%</span>也会奖励给您。</div>
+        <div class="text-msg">获得专属二维码，好友通过扫码进入哇呜阅读，即成为您的书友，书友所有<span
+          style="color: #feb37c">充值的50%</span>奖励给您，书友的书友所有<span style="color: #feb37c">充值的25%</span>也会奖励给您。
+        </div>
       </div>
     </div>
     <div class="poster-button" v-if="type!='vip'">
@@ -68,100 +70,108 @@
         value: '',
         grade: [],
         checkIndex: '',
-      };
+      }
     },
     methods: {
       // 微信支付
       onBridgeReady () {
-        let that = this;
+        let that = this
         WeixinJSBridge.invoke(
           'getBrandWCPayRequest', {
-            "appId": that.moneyList.appId,     //公众号名称，由商户传入
-            "timeStamp": that.moneyList.timeStamp,         //时间戳，自1970年以来的秒数
-            "nonceStr": that.moneyList.nonceStr, //随机串
-            "package": that.moneyList.package,
-            "signType": that.moneyList.signType,         //微信签名方式：
-            "paySign": that.moneyList.paySign //微信签名
+            'appId': that.moneyList.appId,     //公众号名称，由商户传入
+            'timeStamp': that.moneyList.timeStamp,         //时间戳，自1970年以来的秒数
+            'nonceStr': that.moneyList.nonceStr, //随机串
+            'package': that.moneyList.package,
+            'signType': that.moneyList.signType,         //微信签名方式：
+            'paySign': that.moneyList.paySign //微信签名
           },
           function (res) {
-            if (res.err_msg == "get_brand_wcpay_request:ok") {
+            if (res.err_msg == 'get_brand_wcpay_request:ok') {
               // 使用以上方式判断前端返回,微信团队郑重提示：
               //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
               this.$router.push({
                 path: '/posterUser'
               })
             }
-          });
+          })
       },
       getChange(index){
-        this.checkIndex = index;
+        this.checkIndex = index
       },
       chageMoney(){
-        if (typeof WeixinJSBridge == "undefined"){
-          if( document.addEventListener ){
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-          }else if (document.attachEvent){
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        if (typeof WeixinJSBridge == 'undefined') {
+          if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
+          } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
           }
-        }else{
-          this.getMoneyList();
+        } else {
+          this.getMoneyList()
         }
       },
       getMoneyList(){
-        let self = this;
-        let money=this.grade[self.checkIndex].money
-        if(money>0) {
-          money = money * 100;
+        let self = this
+        let money = this.grade[self.checkIndex].money
+        if (money > 0) {
+          money = money * 100
           this.$axios({
             url: `/recharge/get_recharge_params?money=${money}`,
-            method: "GET",
+            method: 'GET',
           }).then(res => {
             console.log(res.data)
-            const {code, data} = res.data;
+            const {code, data} = res.data
             if (code == '0') {
-              self.moneyList = data.jsapi_params;
-              this.onBridgeReady();
+              self.moneyList = data.jsapi_params
+              this.onBridgeReady()
             }
           }).catch(error => {
-          });
+          })
         }
       },
       unlock(){
 
       },
       rechageUnlock(){
-        this.getGrades();
+        this.getGrades()
       },
       goToNext(){
-        this.section_num = this.section_num + 1;
+        this.section_num = this.section_num + 1
         console.log(this.page)
-        this.getList(this.section_num);
+        this.getList(this.section_num)
       },
       getGrades(){
-        let self = this;
+        let self = this
         this.$axios({
           url: `/recharge/consumption_grades`,
-          method: "GET",
+          method: 'GET',
         }).then(res => {
           console.log(res.data)
-          const {code, data} = res.data;
+          const {code, data} = res.data
           if (code == '0') {
-            self.grade = data;
-            this.popupCenterVisible = true;
-            this.popupVisible = false;
+            self.grade = data
+            this.popupCenterVisible = true
+            this.popupVisible = false
           } else {
-            this.popupVisible = true;
+            this.popupVisible = true
           }
         }).catch(error => {
-        });
+        })
       },
     },
     mounted() {
-      document.title = '哇呜阅读';
-      this.type = this.$route.query.type;
-    }
-  };
+      document.title = '哇呜阅读'
+      this.type = this.$route.query.type
+    },
+  /*  beforeRouteLeave(to, from, next) {
+      next({
+        path: '/indexMain',
+        query: {
+          type: 'my'
+        }
+      })
+    }*/
+  }
 </script>
 <style lang="less">
   body {
@@ -172,115 +182,133 @@
     width: 100%;
     background-color: white;
     padding-bottom: 35px;
-    .poster-header {
-      background: url("../../static/img/bg1.png") no-repeat;
-      height: 25vh;
-      vertical-align: middle;
-      color: #fff;
-      font-size: 3rem;
-      line-height: 24vh;
-    }
-    .poster-middle {
-      margin: -20px 20px 20px 8px;
-      .poster-middle-text {
-        padding: 10px 10px;
-        text-align: left;
-        .text-msg {
-          font-size: 1.3rem;
-          margin-left: 20px;
-          margin-top: 10px;
-          color: #8b8b8b;
-        }
-        .cell {
-          width: 10px;
-          height: 10px;
-          background: #f00;
-          border-radius: 50%;
-          margin-top: 13px;
 
-        }
-        .text-title {
-          margin-left: 10px;
-          font-size: 2.2rem;
-          text-align: center
-        }
-      }
-    }
-    .poster-button {
-      width: 100%;
-      button {
-        width: 70%;
-        background-color: #FF9343;
-        color: #fff;
-        border: solid #FF9343 1px;
-        border-radius: 2px;
-        line-height: 2.5;
-        font-size: 1.5rem;
-      }
-    }
+  .poster-header {
+    background: url("../../static/img/bg1.png") no-repeat;
+    height: 25vh;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 3rem;
+    line-height: 24vh;
+  }
 
-    .poster-middle-vip {
-      /*margin-top: 10px;*/
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .mtpouup-main-middle {
-      min-height: 150px;
-      .mtpouup-main-middle-first {
-        margin-top: 12px;
-        font-size: 18px;
-      }
+  .poster-middle {
+    margin: -20px 20px 20px 8px;
 
-      .mtpouup-main-middle-second {
-        font-size: 15px;
-        color: #ff9343;
-      }
+  .poster-middle-text {
+    padding: 10px 10px;
+    text-align: left;
 
-      .mtpouup-main-middle-list {
-        margin-bottom: 3px;
-        button {
-          width: 90%;
-          background-color: #fff;
-          border: solid 1px #b8b8b8;
-          border-radius: 3px;
-          padding: 6px 10px;
-          color: #808080;
-          text-align: justify;
-          margin-top: 5px;
-          font-size: 15px;
-        }
-        .button-check {
-          background-color: #ffe3ce;
-          border: solid 1px #ff9343;
-        }
-      }
+  .text-msg {
+    font-size: 1.3rem;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #8b8b8b;
+  }
 
-      .mtpouup-main-middle-third {
-        font-size: 15px;
-        color: #ff9343;
-        margin-top: 10px;
-      }
+  .cell {
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 50%;
+    margin-top: 13px;
 
-      .mtpouup-main-middle-four {
-        button {
-          width: 90%;
-          background-color: #ff9343;
-          border: solid 1px #ff9343;
-          border-radius: 3px;
-          /*border-color: #ff9343;
-          border-radius: 3px;*/
-          padding: 7px 0;
-          color: #fff;
-          margin-top: 5px;
-          margin-bottom: 10px;
-          font-size: 15px;
-        }
-      }
-    }
-    .mint-popup-middle {
-      width: 80%;
-    }
+  }
+
+  .text-title {
+    margin-left: 10px;
+    font-size: 2.2rem;
+    text-align: center
+  }
+
+  }
+  }
+  .poster-button {
+    width: 100%;
+
+  button {
+    width: 70%;
+    background-color: #FF9343;
+    color: #fff;
+    border: solid #FF9343 1px;
+    border-radius: 2px;
+    line-height: 2.5;
+    font-size: 1.5rem;
+  }
+
+  }
+
+  .poster-middle-vip {
+
+  /*margin-top: 10px;*/
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  }
+  .mtpouup-main-middle {
+    min-height: 150px;
+
+  .mtpouup-main-middle-first {
+    margin-top: 12px;
+    font-size: 18px;
+  }
+
+  .mtpouup-main-middle-second {
+    font-size: 15px;
+    color: #ff9343;
+  }
+
+  .mtpouup-main-middle-list {
+    margin-bottom: 3px;
+
+  button {
+    width: 90%;
+    background-color: #fff;
+    border: solid 1px #b8b8b8;
+    border-radius: 3px;
+    padding: 6px 10px;
+    color: #808080;
+    text-align: justify;
+    margin-top: 5px;
+    font-size: 15px;
+  }
+
+  .button-check {
+    background-color: #ffe3ce;
+    border: solid 1px #ff9343;
+  }
+
+  }
+
+  .mtpouup-main-middle-third {
+    font-size: 15px;
+    color: #ff9343;
+    margin-top: 10px;
+  }
+
+  .mtpouup-main-middle-four {
+
+  button {
+    width: 90%;
+    background-color: #ff9343;
+    border: solid 1px #ff9343;
+    border-radius: 3px;
+    /*border-color: #ff9343;
+    border-radius: 3px;*/
+    padding: 7px 0;
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  }
+  }
+  .mint-popup-middle {
+    width: 80%;
+  }
+
   }
 </style>

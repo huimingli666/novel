@@ -127,9 +127,15 @@ axios.interceptors.response.use(
  })*/
 router.beforeEach((to, from, next) => {
   console.log(to)
+  console.log('from')
+  console.log(from)
+  console.log('next')
+  console.log(next)
   if (to.name == 'page' || to.name == 'Notfound') {
     next()
   }
+  console.log('已登录')
+
   if (browser.versions.mobile) { // 判断是否是移动设备打开。browser代码在下面
     let ua = navigator.userAgent.toLowerCase()// 获取判断用的对象
     // let storage = window.localStorage
@@ -176,10 +182,25 @@ router.beforeEach((to, from, next) => {
         }
       } else {
         // 已经登录
-        console.log('已登录')
-
-
         next()
+        /*console.log('已登录')
+         if (from.name == 'poster') {
+         next({
+         path: '/indexMain',
+         query: {
+         type: 'my'
+         }
+         })
+         } else if (from.name == 'userCenter') {
+         next({
+         path: '/indexMain',
+         query: {
+         type: 'my'
+         }
+         })
+         }else{
+         next()
+         }*/
       }
     } else {
       next({path: '/page'})

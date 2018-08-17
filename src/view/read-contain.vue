@@ -286,6 +286,10 @@
           section_num: parseInt(this.section_num)
         };
         let self = this;
+        this.$indicator.open({
+          text: '加载中...',
+          spinnerType: 'fading-circle'
+        });
         this.$axios({
           url: `/home/detail?works_id=${params.works_id}&section_num=${params.section_num}`,
           method: "GET",
@@ -307,7 +311,9 @@
           if (code == '-1') {
             self.getPayInfo();
           }
+          this.$indicator.close();
         }).catch(error => {
+          this.$indicator.close();
         });
       },
       dealImg(){
@@ -412,7 +418,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .read-contain {
     height: 100%;
     .read-contain-novel {

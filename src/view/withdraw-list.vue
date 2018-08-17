@@ -53,7 +53,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .withdraw-list {
     .list-item {
       display: flex;

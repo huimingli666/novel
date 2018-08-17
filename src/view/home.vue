@@ -148,7 +148,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .home-shouye {
     width: 100%;
     .mint-navbar .mint-tab-item.is-selected {

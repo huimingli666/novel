@@ -28,7 +28,7 @@
     }
   }
 </script>
-<style scoped lang="less">
+<style scoped lang="less" type="text/less">
   h1 {
     text-align: center;
     font-size: 4em;

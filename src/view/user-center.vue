@@ -113,7 +113,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .user-center {
     background-color: #f6f6f6;
     height: 100%;

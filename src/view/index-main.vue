@@ -68,7 +68,7 @@
     }
   };
 </script>
-<style lang="less">
+<style lang="less" type="text/less">
   .index-main {
     height: 100%;
     .index-main-contain {
