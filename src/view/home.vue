@@ -27,7 +27,8 @@
       <div v-for="(item,index) in list" style="display: flex;flex-direction: row;margin-top: 12px">
         <div v-for="(childitem,index) in item.child_list" :key="index" style="width: 30%;padding:0 10px"
              @click="geToDetail(childitem.works_id,type)">
-          <div class="containt-item-img"><img :src="'http://wow.drmfslx.top/'+childitem.img_url"></div>
+          <!--<div class="containt-item-img"><img :src="'http://wow.drmfslx.top/'+childitem.img_url"></div>-->
+          <div class="containt-item-img"><img :src="childitem.img_url"></div>
           <!--<div class="containt-item-img"><img :src="childitem.info_url"></div>-->
           <div style="font-size: 13px;margin-top:8px">{{childitem.works_name}}</div>
         </div>

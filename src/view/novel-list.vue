@@ -9,7 +9,8 @@
 <template>
   <div class="novel-list">
     <div class="read-item">
-      <div class="read-item-left"><img :src="'http://wow.drmfslx.top/'+list.img_url"></div>
+      <!--<div class="read-item-left"><img :src="'http://wow.drmfslx.top/'+list.img_url"></div>-->
+      <div class="read-item-left"><img :src="list.img_url"></div>
       <div style="width:65%;height: 100%">
         <div class="item-center-first">{{list.works_name}}</div>
         <div style="display: flex;flex-direction: row;height: 40% ">
