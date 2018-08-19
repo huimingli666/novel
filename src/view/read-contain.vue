@@ -343,7 +343,9 @@
           const {code, data} = res.data;
           if (code == '0') {
             self.PayInfo = data;
-            if (self.PayInfo.auto_pay == '1') {
+            self.dealPayInfo();
+            self.popupVisible = true;
+           /* if (self.PayInfo.auto_pay == '1') {
               if (this.PayInfo.book_balace != null) {
                 if (this.PayInfo.is_vip) {
                   if (this.PayInfo.book_balace > this.PayInfo.vip_price) {
@@ -365,7 +367,7 @@
               self.dealPayInfo();
 //            self.section_num = self.section_num - 1;
               self.popupVisible = true;
-            }
+            }*/
           } else {
             self.popupVisible = true;
           }

@@ -60,7 +60,7 @@
       }
     },
     mounted() {
-      document.title = '哇呜阅读'
+      document.title = '哇呜阅读';
       this.he = document.body.scrollHeight;
       if (this.$route.query.type) {
         this.selected = this.$route.query.type;

@@ -89,8 +89,12 @@
             if (res.err_msg == 'get_brand_wcpay_request:ok') {
               // 使用以上方式判断前端返回,微信团队郑重提示：
               //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-              this.$router.push({
-                path: '/posterUser'
+              this.popupCenterVisible = false;
+              that.$router.push({
+                path: '/indexMain',
+                query: {
+                  type: 'my'
+                }
               })
             }
           })
@@ -163,14 +167,14 @@
       document.title = '哇呜阅读'
       this.type = this.$route.query.type
     },
-  /*  beforeRouteLeave(to, from, next) {
-      next({
-        path: '/indexMain',
-        query: {
-          type: 'my'
-        }
-      })
-    }*/
+    /*  beforeRouteLeave(to, from, next) {
+     next({
+     path: '/indexMain',
+     query: {
+     type: 'my'
+     }
+     })
+     }*/
   }
 </script>
 <style lang="less">
@@ -183,132 +187,132 @@
     background-color: white;
     padding-bottom: 35px;
 
-  .poster-header {
-    background: url("../../static/img/bg1.png") no-repeat;
-    height: 25vh;
-    vertical-align: middle;
-    color: #fff;
-    font-size: 3rem;
-    line-height: 24vh;
-  }
+    .poster-header {
+      background: url("../../static/img/bg1.png") no-repeat;
+      height: 25vh;
+      vertical-align: middle;
+      color: #fff;
+      font-size: 3rem;
+      line-height: 24vh;
+    }
 
-  .poster-middle {
-    margin: -20px 20px 20px 8px;
+    .poster-middle {
+      margin: -20px 20px 20px 8px;
 
-  .poster-middle-text {
-    padding: 10px 10px;
-    text-align: left;
+      .poster-middle-text {
+        padding: 10px 10px;
+        text-align: left;
 
-  .text-msg {
-    font-size: 1.3rem;
-    margin-left: 20px;
-    margin-top: 10px;
-    color: #8b8b8b;
-  }
+        .text-msg {
+          font-size: 1.3rem;
+          margin-left: 20px;
+          margin-top: 10px;
+          color: #8b8b8b;
+        }
 
-  .cell {
-    width: 10px;
-    height: 10px;
-    background: #f00;
-    border-radius: 50%;
-    margin-top: 13px;
+        .cell {
+          width: 10px;
+          height: 10px;
+          background: #f00;
+          border-radius: 50%;
+          margin-top: 13px;
 
-  }
+        }
 
-  .text-title {
-    margin-left: 10px;
-    font-size: 2.2rem;
-    text-align: center
-  }
+        .text-title {
+          margin-left: 10px;
+          font-size: 2.2rem;
+          text-align: center
+        }
 
-  }
-  }
-  .poster-button {
-    width: 100%;
+      }
+    }
+    .poster-button {
+      width: 100%;
 
-  button {
-    width: 70%;
-    background-color: #FF9343;
-    color: #fff;
-    border: solid #FF9343 1px;
-    border-radius: 2px;
-    line-height: 2.5;
-    font-size: 1.5rem;
-  }
+      button {
+        width: 70%;
+        background-color: #FF9343;
+        color: #fff;
+        border: solid #FF9343 1px;
+        border-radius: 2px;
+        line-height: 2.5;
+        font-size: 1.5rem;
+      }
 
-  }
+    }
 
-  .poster-middle-vip {
+    .poster-middle-vip {
 
-  /*margin-top: 10px;*/
-  img {
-    width: 100%;
-    height: 100%;
-  }
+      /*margin-top: 10px;*/
+      img {
+        width: 100%;
+        height: 100%;
+      }
 
-  }
-  .mtpouup-main-middle {
-    min-height: 150px;
+    }
+    .mtpouup-main-middle {
+      min-height: 150px;
 
-  .mtpouup-main-middle-first {
-    margin-top: 12px;
-    font-size: 18px;
-  }
+      .mtpouup-main-middle-first {
+        margin-top: 12px;
+        font-size: 18px;
+      }
 
-  .mtpouup-main-middle-second {
-    font-size: 15px;
-    color: #ff9343;
-  }
+      .mtpouup-main-middle-second {
+        font-size: 15px;
+        color: #ff9343;
+      }
 
-  .mtpouup-main-middle-list {
-    margin-bottom: 3px;
+      .mtpouup-main-middle-list {
+        margin-bottom: 3px;
 
-  button {
-    width: 90%;
-    background-color: #fff;
-    border: solid 1px #b8b8b8;
-    border-radius: 3px;
-    padding: 6px 10px;
-    color: #808080;
-    text-align: justify;
-    margin-top: 5px;
-    font-size: 15px;
-  }
+        button {
+          width: 90%;
+          background-color: #fff;
+          border: solid 1px #b8b8b8;
+          border-radius: 3px;
+          padding: 6px 10px;
+          color: #808080;
+          text-align: justify;
+          margin-top: 5px;
+          font-size: 15px;
+        }
 
-  .button-check {
-    background-color: #ffe3ce;
-    border: solid 1px #ff9343;
-  }
+        .button-check {
+          background-color: #ffe3ce;
+          border: solid 1px #ff9343;
+        }
 
-  }
+      }
 
-  .mtpouup-main-middle-third {
-    font-size: 15px;
-    color: #ff9343;
-    margin-top: 10px;
-  }
+      .mtpouup-main-middle-third {
+        font-size: 15px;
+        color: #ff9343;
+        margin-top: 10px;
+      }
 
-  .mtpouup-main-middle-four {
+      .mtpouup-main-middle-four {
 
-  button {
-    width: 90%;
-    background-color: #ff9343;
-    border: solid 1px #ff9343;
-    border-radius: 3px;
-    /*border-color: #ff9343;
-    border-radius: 3px;*/
-    padding: 7px 0;
-    color: #fff;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 15px;
-  }
+        button {
+          width: 90%;
+          background-color: #ff9343;
+          border: solid 1px #ff9343;
+          border-radius: 3px;
+          /*border-color: #ff9343;
+          border-radius: 3px;*/
+          padding: 7px 0;
+          color: #fff;
+          margin-top: 5px;
+          margin-bottom: 10px;
+          font-size: 15px;
+        }
 
-  }
-  }
-  .mint-popup-middle {
-    width: 80%;
-  }
+      }
+    }
+    .mint-popup-middle {
+      width: 80%;
+    }
 
   }
 </style>

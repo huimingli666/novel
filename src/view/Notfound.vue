@@ -25,6 +25,9 @@
       if (this.invite_id != '') {
         localStorage.setItem('invite_id', this.invite_id)
       }
+      localStorage.removeItem('token')
+      localStorage.removeItem('userinfo')
+      localStorage.removeItem('openid')
     }
   }
 </script>
