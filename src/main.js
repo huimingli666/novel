@@ -137,7 +137,7 @@ router.beforeEach((to, from, next) => {
   console.log('已登录')
 
   if (browser.versions.mobile) { // 判断是否是移动设备打开。browser代码在下面
-    let ua = navigator.userAgent.toLowerCase();// 获取判断用的对象
+    let ua = navigator.userAgent.toLowerCase()// 获取判断用的对象
     // let storage = window.localStorage
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       /*  if (to.name == '/q') {
@@ -146,30 +146,30 @@ router.beforeEach((to, from, next) => {
        }).catch(error => {
        })
        } else {*/
-     /* localStorage.removeItem('token')
-      localStorage.removeItem('userinfo')
-      localStorage.removeItem('openid')*/
+      /* localStorage.removeItem('token')
+       localStorage.removeItem('userinfo')
+       localStorage.removeItem('openid')*/
       if (!localStorage.getItem('token')) {
         // 第一次访问
         console.log('授权登录')
-        let currentUrl = window.location.href; //获取当前链接
+        let currentUrl = window.location.href //获取当前链接
         // 跳转到微信授权页面，微信授权地址通过服务端获得
-        let arr = currentUrl.split('?');//分割域名和参数界限
+        let arr = currentUrl.split('?')//分割域名和参数界限
         if (arr.length > 1) {
-          let tem = arr[1].split('=');
+          let tem = arr[1].split('=')
           if (tem[0] == 'code') {
             console.log(tem[1])
             console.log('localStorage.getItem(invite_id)')
             console.log(localStorage.getItem('invite_id'))
-            let invite_id = '';
+            let invite_id = ''
             if (localStorage.getItem('invite_id')) {
               invite_id = localStorage.getItem('invite_id')
             }
             axios.get(`http://wow.drmfslx.top/wx/get_user_info?code=${tem[1]}&invite_id=${invite_id}`).then(res => {
               console.log(res)
-              localStorage.setItem('userinfo', res.data.data.userinfo);
-              localStorage.setItem('openid', res.data.data.userinfo.openid);
-              localStorage.setItem('token', res.data.data.token);
+              localStorage.setItem('userinfo', res.data.data.userinfo)
+              localStorage.setItem('openid', res.data.data.userinfo.openid)
+              localStorage.setItem('token', res.data.data.token)
               next({path: '/indexMain'})
             }).catch(error => {
             })
@@ -197,7 +197,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next({path: '/Notfound'})
   }
-});
+})
 /*router.beforeEach((pageTo, pageFrom, next) => {
  if (browser.versions.mobile) { // 判断是否是移动设备打开。browser代码在下面
  let ua = navigator.userAgent.toLowerCase()// 获取判断用的对象
