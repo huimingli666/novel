@@ -16,7 +16,7 @@
           </div>
         </mt-tab-item>
         <mt-tab-item id="list">
-          <div @click="goToHome()">目录</div>
+          <div @click="goToHomeList()">目录</div>
         </mt-tab-item>
         <mt-tab-item id="next">
           <div @click="goToNext()">
@@ -251,7 +251,7 @@
       rechageUnlock(){
         this.getGrades()
       },
-      goToHome(){
+      goToHomeList(){
         let self = this
         this.$router.push({
           path: '/novelList',
