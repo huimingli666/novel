@@ -95,6 +95,18 @@
         </div>
       </mt-popup>
     </div>
+    <div>
+      <mt-popup
+        v-model="popupNoVisible"
+        position="middle" :closeOnClickModal="false">
+        <div class="mtpouup-main-middle">
+          <!--<div class="mtpouup-no-first">扫码关注</div>-->
+          <div class="mtpouup-no-second"><img src="../../static/img/qrcode.jpg"></div>
+          <div class="end-right-first">长按二维码关注“哇呜阅读”</div>
+          <div class="end-right-second">更多精彩内容等着你</div>
+        </div>
+      </mt-popup>
+    </div>
   </div>
 </template>
 <script>
@@ -126,6 +138,7 @@
         section_num: '',
         popupVisible: false,
         popupCenterVisible: false,
+        popupNoVisible: false,
         value: true,
         grade: [],
         checkIndex: '',
@@ -322,6 +335,11 @@
           }
           if (code == '-1') {
             self.getPayInfo()
+          }
+          if (code == '1002') {
+            this.popupNoVisible = true;
+          } else {
+            this.popupNoVisible = false
           }
           this.$indicator.close()
         }).catch(error => {
@@ -538,7 +556,27 @@
         margin-top: 12px;
         font-size: 18px;
       }
+      .mtpouup-no-first {
+        margin-top: 12px;
+        font-size: 18px;
+      }
+      .mtpouup-no-second {
+        margin-top: 15px;
+        img {
+          width: 90%;
+          height: 100%;
+        }
+      }
+      .end-right-first {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
 
+      .end-right-second {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
       .mtpouup-main-middle-second {
         font-size: 15px;
         color: #ff9343;

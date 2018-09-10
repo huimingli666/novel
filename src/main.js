@@ -42,7 +42,7 @@ axios.interceptors.request.use(
     let url = config.url
     let arr = []
     if (url.indexOf('?') != -1) {
-      arr = url.split('?')//分割域名和参数界限
+      arr = url.split('?')// 分割域名和参数界限
     }
     let sign = ''
     if (arr && arr.length > 0) {
@@ -51,11 +51,11 @@ axios.interceptors.request.use(
     } else {
       sign = 'fdhfjhdsjfhjdhsj'
     }
-    config.headers['Content-type'] = 'application/json;chartset=utf-8';
+    config.headers['Content-type'] = 'application/json;chartset=utf-8'
     if (localStorage.getItem('openid')) {
-      config.headers.Openid = localStorage.getItem('openid');
-      config.headers.Sign = sign;
-      config.headers.Token = localStorage.getItem('token');
+      config.headers.Openid = localStorage.getItem('openid')
+      config.headers.Sign = sign
+      config.headers.Token = localStorage.getItem('token')
       config.headers.Timestamps = new Date().getTime()
     }
     return config
@@ -64,19 +64,19 @@ axios.interceptors.request.use(
     console.log(error) // for debug
     Promise.reject(error)
   }
-);
+)
 
 // http response 拦截器
 axios.interceptors.response.use(
   response => {
     console.log(response)
     if (response.status == 200 && response.data != null) {
-      //异常流程，重新登录
+      // 异常流程，重新登录
       if (response.data.code && response.data.code == '1001') {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token')
         router.replace({
           path: '/q'
-        });
+        })
         return response.data.message && Toast('当前用户验证失败,请重新登录。')
       } else {
         return response
@@ -91,8 +91,8 @@ axios.interceptors.response.use(
   },
   error => {
     Toast(error)
-  });
-/*router.beforeEach((to, from, next) => {
+  })
+/* router.beforeEach((to, from, next) => {
  console.log(to)
  if (to.name == 'page' || to.name == 'Notfound') {
  next()
@@ -124,13 +124,8 @@ axios.interceptors.response.use(
  console.log('已登录')
  next()
  }
- })*/
+ }) */
 router.beforeEach((to, from, next) => {
-  console.log(to)
-  console.log('from')
-  console.log(from)
-  console.log('next')
-  console.log(next)
   if (to.name == 'page' || to.name == 'Notfound') {
     next()
   }
@@ -145,16 +140,16 @@ router.beforeEach((to, from, next) => {
        window.location.href = res.data.auth_url
        }).catch(error => {
        })
-       } else {*/
+       } else { */
       /* localStorage.removeItem('token')
        localStorage.removeItem('userinfo')
-       localStorage.removeItem('openid')*/
+       localStorage.removeItem('openid') */
       if (!localStorage.getItem('token')) {
         // 第一次访问
         console.log('授权登录')
-        let currentUrl = window.location.href //获取当前链接
+        let currentUrl = window.location.href // 获取当前链接
         // 跳转到微信授权页面，微信授权地址通过服务端获得
-        let arr = currentUrl.split('?')//分割域名和参数界限
+        let arr = currentUrl.split('?')// 分割域名和参数界限
         if (arr.length > 1) {
           let tem = arr[1].split('=')
           if (tem[0] == 'code') {
@@ -198,7 +193,7 @@ router.beforeEach((to, from, next) => {
     next({path: '/Notfound'})
   }
 })
-/*router.beforeEach((pageTo, pageFrom, next) => {
+/* router.beforeEach((pageTo, pageFrom, next) => {
  if (browser.versions.mobile) { // 判断是否是移动设备打开。browser代码在下面
  let ua = navigator.userAgent.toLowerCase()// 获取判断用的对象
  // let storage = window.localStorage
@@ -243,7 +238,7 @@ router.beforeEach((to, from, next) => {
  // 否则就是PC浏览器打开
  alert('kkkk')
  }
- })*/
+ }) */
 
 /* eslint-disable no-new */
 new Vue({
